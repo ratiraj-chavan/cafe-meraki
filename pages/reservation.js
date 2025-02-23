@@ -40,17 +40,24 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Ensure time is at least 1 hour ahead if reservation is for today
-        if (reservationDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0)) {
-            const [hours, minutes] = reservationTime.split(":").map(Number);
-            const reservationDateTime = new Date();
-            reservationDateTime.setHours(hours, minutes, 0);
+        // Extract hours and minutes from time input
+        const [hours, minutes] = reservationTime.split(":").map(Number);
+        const reservationDateTime = new Date(reservationDate);
+        reservationDateTime.setHours(hours, minutes, 0);
 
+        // Check if the reservation time is within allowed hours (8:00 AM - 10:00 PM)
+        if (hours < 8 || hours >= 24) {
+            alert("⚠️ Reservations are only allowed between 8:00 AM and 12:00 AM.");
+            return;
+        }
+
+        // Ensure reservation is at least 15 minutes ahead if for today
+        if (reservationDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0)) {
             const minTime = new Date();
-            minTime.setHours(minTime.getHours() + 1); // At least 1 hour ahead
+            minTime.setMinutes(minTime.getMinutes() + 15); // At least 15 minutes ahead
 
             if (reservationDateTime < minTime) {
-                alert("⚠️ Reservation time must be at least one hour from the current time.");
+                alert("⚠️ Reservation must be at least 15 minutes ahead of the current time.");
                 return;
             }
         }
@@ -63,6 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
             time: reservationTime,
             guests
         };
+
+        console.log("Reservation successful:", reservationData);
+        alert("✅ Reservation successfully made!");
+        reservationForm.reset(); // Reset the form after submission
+
+
 
         // Send data to Firebase Realtime Database
         const reservationsRef = ref(database, "reservations");
