@@ -68,10 +68,11 @@ html, body {
 }
 
 /* Section Styling */
-.home, .reservation, .cart, .order, .menu {
+.home, .order,.reservation, .menu {
     text-align: center;
+    background:  blur(30px);
     padding: 30px 20px;
-    background: url('img/bg.jpg') center/cover no-repeat;
+    background: url('img/bg.jpg') center;
 }
 
 /* Section Headings */
@@ -143,6 +144,13 @@ html, body {
     margin: auto;
     display: flex;
     flex-direction: column;
+
+    background: url('img/bg.jpg') center/cover no-repeat;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
 }
 
 .reservation form label {
@@ -224,9 +232,10 @@ button:hover {
 /* Cart Section Styling */
 .cart {
     max-width: 800px;
+    width: 35%;
     margin: 40px auto;
     padding: 20px;
-    background-color: white;
+    background: transparent blur(10px);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
