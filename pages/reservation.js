@@ -29,6 +29,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const dateInput = document.getElementById("date");
         const timeInput = document.getElementById("time");
         const guests = document.getElementById("guests").value.trim();
+        // 🚨 Prevent empty or invalid guest count
+        if (guests === "" || isNaN(guests) || parseInt(guests) <= 0) {
+         alert("⚠️ Please enter a valid number of guests (must be at least 1).");
+          return;
+         }
+        // 🚨 Prevent blank or space-only names
+        if (name === "") {
+            alert("⚠️ Please enter a valid name!");
+            return;
+        }
 
         const reservationDate = new Date(dateInput.value);
         const reservationTime = timeInput.value;
@@ -46,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reservationDateTime.setHours(hours, minutes, 0);
 
         // Check if the reservation time is within allowed hours (8:00 AM - 10:00 PM)
-        if (hours < 8 || hours >= 24) {
-            alert("⚠️ Reservations are only allowed between 8:00 AM and 12:00 AM.");
+        if (hours < 8 || hours >= 22) {
+            alert("⚠️ Reservations are only allowed between 8:00 AM and 10:00 AM.");
             return;
         }
 
@@ -72,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         console.log("Reservation successful:", reservationData);
-        alert("✅ Reservation successfully made!");
         reservationForm.reset(); // Reset the form after submission
 
 
