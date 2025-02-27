@@ -25,11 +25,11 @@ document.getElementById('contact-form').addEventListener('submit', (e) => {
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
-    if (name.trim() === "" || email.trim() === "" || subject.trim() === "" || message.trim() === "") {
+   
+}
+ if (name.trim() === "" || email.trim() === "" || subject.trim() === "" || message.trim() === "") {
     alert("⚠️ Please fill out all fields before submitting.");
     return;
-}
-
 // Validate email format
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if (!emailPattern.test(email)) {
