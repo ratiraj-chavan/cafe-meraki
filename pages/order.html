@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Cafe Meraki</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            background: url('img/bg.jpg') center/cover no-repeat;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+        }
+
+        /* Order Confirmation Section */
+        .order-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .thank-you-heading {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .thank-you-subheading {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .order-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+            
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #ee921a;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html">   🏠                  </a>
+            <a href="menu.html">   🗒️               </a>
+            <a href="reservation.html">      ✅              </a>
+            <a href="cart.html">   🛒                   </a>
+            <a href="account.html">          ℀</a> 
+        </nav>
+    </header>
+
+    <div class="order-container">
+        <h1 class="thank-you-heading">Thank You for Your Order!</h1>
+        <h2 class="thank-you-subheading">We will serve you soon 🍽️</h2>
+        <div class="order-actions">
+            <button class="btn">📍 Track Order</button>
+            <button class="btn">📄 Download Receipt</button>
+        </div>
+    </div>
+    <script src="../script/animation.js"></script>
+    <footer>
+        <p>&copy; 2025 Cafe Meraki - All Rights Reserved</p>
+        <p>Ownership and maintenance by Ratiraj Chavan</p>
+    </footer>
+
+</body>
+</html>

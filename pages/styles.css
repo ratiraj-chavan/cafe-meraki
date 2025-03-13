@@ -1,0 +1,356 @@
+/* General Body Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Century Gothic", Century;
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    gap: 15px;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 1rem;
+    background: rgba(115, 112, 112, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 35px;
+    border: 1px solid rgba(5, 5, 5, 0.5);
+    box-shadow: 0 6px 6px rgba(33, 33, 33, 0.5);
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.navbar a {
+    color: black;
+    margin: 0 25px;
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: rgb(50, 55, 54);
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.navbar a:hover {
+    color: #1a1818;
+}
+
+/* Section Styling */
+.home, .reservation, .cart, .order, .menu {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+}
+
+/* Section Headings */
+.home h1, .home h2, .home h3, .menu h2, .reservation h2 {
+    margin-top: 10px;
+}
+
+.home h1 { font-size: 48px; font-weight: bold; }
+.home h2 { font-size: 24px; }
+.home h3 { font-size: 20px; }
+.menu h2, .reservation h2 { font-size: 36px; margin-bottom: 20px; }
+/* Menu Grid Layout */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+/* Individual Menu Item Styling */
+.menu-item {
+    background: linear-gradient(135deg, #ffffff, #f8f8f8);
+    border: none;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Zoom and shadow effect on hover */
+.menu-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling with Hover Effect */
+.menu-item img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Slight zoom-in effect on image */
+.menu-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Title Styling */
+.menu-item h3 {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+
+
+/* Glowing border effect */
+.menu-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show glowing border on hover */
+.menu-item:hover::before {
+    opacity: 1;
+}
+/* Button Styling */
+.btn {
+    background: #ed9829;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2; /* Ensures it's above everything */
+}
+
+.btn:hover {
+    background: #e98b11;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+}
+
+/* Reservation Form Styling */
+.reservation form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation form label {
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.reservation form input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #0c0a0a;
+    border-radius: 5px;
+}
+
+/* Contact Container */
+.contact-container {
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Contact Form Styling */
+.contact-container {
+
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+    padding: 30px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: absolute;
+    top: 50%; /* Adjust this value to move it slightly down */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Form Styling */
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin: 5px 0;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #ed9829;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #eb8f17;
+}
+
+/* Cart Section Styling */
+.cart {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+}
+
+/* Cart Items */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 10px;
+}
+
+.cart-item p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.cart-item button, #cart-total .btn {
+    background-color: #ed9829;
+    color: white;
+    border: none;
+    padding: 10px 19px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.cart-item button:hover, #cart-total .btn:hover {
+    background-color: #f39821;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer p {
+    margin: 0;
+    font-size: 12px;
+}
+
+/* Animations */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.animated {
+    animation: pop 0.3s ease-in-out;
+}
+
+.flying-item {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    transition: all 0.8s ease-in-out;
+    z-index: 1000;
+    pointer-events: none;
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 15px;
+}
+/* Page transition effect */
+.page-transition {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Hide the page before switching */
+.page-transition.hide {
+  opacity: 0;
+  transform: translateX(-50px); /* Moves page to the left slightly */
+}

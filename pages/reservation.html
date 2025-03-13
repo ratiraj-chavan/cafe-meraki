@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation-Cafe Meraki</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="../script/auth.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html">   🏠                  </a>
+            <a href="menu.html">   🗒️               </a>
+            <a href="reservation.html">      ✅              </a>
+            <a href="cart.html">   🛒                   </a>
+            <a href="account.html">          ℀</a> 
+        </nav>
+    </header>
+    <br><br><br><br><br><br>
+   
+    <section id="reservation" class="reservation">
+        
+        <form id="reservation-form">
+            <h2>Table Reservation</h2>
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your Email" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+
+            <label for="time">Time</label>
+            <input type="time" id="time" required>
+
+            <label for="guests">Party Size</label>
+            <input type="number" id="guests" placeholder="Number of Guests" required>
+            <p>*Reservations must be made 15 minutes in advance. </p>
+
+            <button type="submit" class="btn">Reserve Now</button>
+        </form>
+        <br> <br> <br> <br> 
+    </section>
+
+    <script type="module" src="./reservation.js"></script>
+    <script src="animation.js"></script>
+    <script type="module">
+
+        // Import Firebase Auth
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        
+        // Initialize Firebase Auth
+        const auth = getAuth();
+        
+        // Restrict Access if Not Logged In
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                alert("❌ Access Denied! You must be logged in to use reservation.");
+                window.location.href = "login.html"; // Redirect to login page
+            }
+        });
+        </script>
+        <script src="../script/animation.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Cafe Meraki - All Rights Reserved</p>
+    <p>Ownership and maintenance by Ratiraj Chavan</p>
+</footer>
+</html>

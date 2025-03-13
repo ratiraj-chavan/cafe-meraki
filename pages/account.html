@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome Icons -->
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: "Century Gothic", Century;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            width: 450px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Title */
+        h2 {
+            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* User Info Styling */
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        p i {
+            color: #df7c1a;
+            font-size: 18px;
+        }
+
+        /* Logout Button */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #df7c1a;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #d18232;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Footer Styling */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer p {
+    margin: 0;
+    font-size: 12px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html">   🏠                  </a>
+            <a href="menu.html">   🗒️               </a>
+            <a href="reservation.html">      ✅              </a>
+            <a href="cart.html">   🛒                   </a>
+            <a href="account.html">          ℀</a> 
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2><i class="fas fa-user-circle"></i> My Account</h2><br><br>        
+        <p><i class="fas fa-user"></i><strong> Full Name:</strong> <span id="userName">Loading...</span></p>
+        <p><i class="fas fa-phone"></i><strong> Mobile Number:</strong> <span id="userPhone">Loading...</span></p>
+        <p><i class="fas fa-envelope"></i><strong> Email:</strong> <span id="userEmail">Loading...</span></p>
+        
+        <button class="btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+
+    <script type="module" src="../script/account.js"></script>
+    <script src="../script/animation.js"></script>
+
+</body>
+<footer>
+    <p>&copy; 2025 Cafe Meraki - All Rights Reserved</p>
+    <p>Ownership and maintenance by Ratiraj Chavan</p>
+</footer>
+
+</html>
