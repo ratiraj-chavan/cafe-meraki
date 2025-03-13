@@ -53,10 +53,6 @@ window.signup = function () {
             alert("✅ Signup successful! Redirecting to Home...");
             window.location.href = "../index.html";
         })
-        .catch(error => {
-            console.error("❌ Signup Error:", error.code, error.message);
-            alert("❌ Signup Failed: " + error.message);
-        });
 };
 // ✅ Login Function
 window.login = function () {
