@@ -5,45 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Cafe Meraki</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
 </head>
 <body>
 
     <header>
         <nav class="navbar">
-            <a href="../index.html">   🏠                  </a>
-            <a href="menu.html">   🗒️               </a>
-            <a href="reservation.html">      ✅              </a>
-            <a href="cart.html">   🛒                   [<span id="cart-count">0</span>]</a>
-            <a href="account.html">          ℀</a> 
+            <a href="../index.html">🏠</a>
+            <a href="menu.html">🗒️</a>
+            <a href="reservation.html">✅</a>
+            <a href="cart.html">🛒 [<span id="cart-count">0</span>]</a>
+            <a href="account.html">℀</a> 
         </nav>
     </header>
+    
     <br><br><br><br>
+
     <section id="menu" class="menu">
         <h2>Our Menu</h2>
         <div class="menu-grid">
-            <!-- Menu items list -->
-            <div class="menu-item"> 
+            <div class="menu-item">
                 <img src="img/pizza.avif" alt="Pizza" class="menu-img">
                 <h3>Classic Pizza</h3>
                 <h4>Price: 100 rs</h4>
                 <input type="number" id="pizza-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Classic Pizza', 100, 'pizza-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('pizza', 'Classic Pizza', 100)">Add to Cart</button>
             </div>
-            
+
             <div class="menu-item">
                 <img src="img/burger.avif" alt="Burger" class="menu-img">
                 <h3>Burger Combo</h3>
                 <h4>Price: 210 rs</h4>
                 <input type="number" id="burger-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Burger Combo', 210, 'burger-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('burger', 'Burger Combo', 210)">Add to Cart</button>
             </div> 
-            
             <div class="menu-item">
                 <img src="img/vegroll.jpeg" alt="Veg Roll" class="menu-img">
                 <h3>Paneer Veg Roll</h3>
                 <h4>Price: 100 rs</h4>
                 <input type="number" id="vegroll-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Paneer Veg Roll', 100, 'vegroll-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Paneer Veg Roll', 'Paneer Veg Roll', 100)">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
@@ -51,7 +54,7 @@
                 <h3>Boom Sandwich</h3>
                 <h4>Price: 120 rs</h4>
                 <input type="number" id="sandwich-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Boom Sandwich', 120, 'sandwich-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Boom Sandwich', 'Boom Sandwich',120)">Add to Cart</button>
             </div>
             
             <div class="menu-item">
@@ -59,7 +62,7 @@
                 <h3>Tandoori Biryani</h3>
                 <h4>Price: 120 rs</h4>
                 <input type="number" id="biryani-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Tandoori Biryani', 120, 'biryani-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Tandoori Biryani','Tandoori Biryani', 120)">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
@@ -67,7 +70,7 @@
                 <h3>Bhatti Chicken</h3>
                 <h4>Price: 250 rs</h4>
                 <input type="number" id="bhattichicken-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Bhatti Chicken', 250, 'bhattichicken-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Bhatti Chicken','Bhatti Chicken', 250)">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
@@ -75,7 +78,7 @@
                 <h3>Steam Momos</h3>
                 <h4>Price: 60 rs</h4>
                 <input type="number" id="momo-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Steam Momos', 60, 'momo-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Steam Momos','Steam Momos', 60)">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
@@ -83,7 +86,7 @@
                 <h3>Hola Pasta</h3>
                 <h4>Price: 150 rs</h4>
                 <input type="number" id="pasta-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Hola Pasta', 150, 'pasta-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Hola Pasta','Hola Pasta', 150)">Add to Cart</button>
             </div>
             
             <div class="menu-item">
@@ -91,7 +94,7 @@
                 <h3>Cheese-Cake</h3>
                 <h4>Price: 180 rs</h4>
                 <input type="number" id="cake-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Cheese-Cake', 180, 'cake-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Cheese-Cake','Cheese-Cake', 180)">Add to Cart</button>
             </div>
             
             <div class="menu-item">
@@ -99,7 +102,7 @@
                 <h3>Ice-Cream</h3>
                 <h4>Price: 80 rs</h4>
                 <input type="number" id="icecream-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Ice-Cream', 80, 'icecream-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Ice-Cream','Ice-Cream', 80)">Add to Cart</button>
             </div>
             
             <div class="menu-item">
@@ -107,7 +110,7 @@
                 <h3>Cold Coffee</h3>
                 <h4>Price: 70 rs</h4>
                 <input type="number" id="coffee-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Cold Coffee', 70, 'coffee-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Cold Coffee','Cold Coffee', 70)">Add to Cart</button>
             </div>
             
             <div class="menu-item">
@@ -115,43 +118,12 @@
                 <h3>Chocolate-Waffle</h3>
                 <h4>Price: 50 rs</h4>
                 <input type="number" id="waffel-quantity" value="1" min="1">
-                <button class="btn" onclick="addToCart('Chocolate-Waffle', 50, 'waffel-quantity', this)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('Chocolate-Waffle','Chocolate-Waffle', 50)">Add to Cart</button>
             </div>
-            
-        <br><br>
-        
+
+        </div>
     </section>
-    
-
-    <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        function addToCart(itemName, itemPrice, quantityId, button) {
-            let quantity = parseInt(document.getElementById(quantityId).value);
-            if (quantity > 0) {
-                const existingItem = cart.find(item => item.name === itemName);
-                if (existingItem) {
-                    existingItem.quantity += quantity;
-                } else {
-                    cart.push({ name: itemName, price: itemPrice, quantity });
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
-
-                // Animate the image
-                const itemImage = button.parentNode.querySelector('.menu-img');
-                if (itemImage) {
-                    animateToCart(itemImage);
-                }
-
-                setTimeout(() => {
-                    updateCartCount();
-                }, 800);
-            } else {
-                alert("Please select a valid quantity.");
-            }
-        }
-
-        // Function to animate the item image flying to the cart
+    <script> // Function to animate the item image flying to the cart
         function animateToCart(itemImage) {
             let cartIcon = document.querySelector("#cart-count");
             if (!cartIcon || !itemImage) return;
@@ -186,15 +158,16 @@
                 flyingImg.remove();
             }, 1000);
         }
+</script>
 
-        function updateCartCount() {
-            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = cartCount;
-        }
+    <!-- ✅ Load Firebase First -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
 
-        updateCartCount();
-    </script>
-<script src="../script/animation.js"></script>
+    <!-- ✅ Load JavaScript File After Firebase -->
+    <script type="module" src="../script/menu.js"></script>
+
 </body>
 
 <footer>

@@ -6,6 +6,7 @@
     <title>Your Cart-Cafe Meraki</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="../script/auth.js"></script>
+   
 </head>
 <body>
 
@@ -27,81 +28,15 @@
         <div id="cart-items"></div>
 
         <div id="cart-total">
-            <p><strong>Total:</strong> Rs.<span id="total-price">0.00</span></p>
-            <button class="btn" onclick="proceedToCheckout()">Place Order</button>
+            <p><strong>Total:</strong> Rs.<span id="total-price">0.00</span></p><br>
+            <div>
+            <a href="order.html" class="btn" onclick="proceedToCheckout()">Place Order</a>
+        </div>
         </div>
         <br><br><br>
     </section>
     <br><br><br><br>
-    <script>
-        // Retrieve cart from localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-        // Function to display items in the cart
-        function displayCart() {
-            const cartItemsDiv = document.getElementById('cart-items');
-            const totalPriceDiv = document.getElementById('total-price');
-            let total = 0;
-    
-            cartItemsDiv.innerHTML = ''; // Clear previous items
-    
-            // Loop through cart items and display them
-            cart.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.classList.add('cart-item');
-                itemDiv.innerHTML = `
-                    <p>${item.name} :- Rs ${item.price.toFixed(2)} x ${item.quantity} = Rs ${(item.price * item.quantity).toFixed(2)}</p>
-                   
-                    <button class="btn" onclick="removeItem(${index})"> Remove </button>
-                `;
-                cartItemsDiv.appendChild(itemDiv);
-    
-                total += item.price * item.quantity; // Calculate total for each item
-            });
-    
-            totalPriceDiv.textContent = total.toFixed(2); // Update total price
-        }
-    
-        // Function to update item quantity
-        function updateItemQuantity(index, change) {
-            if (cart[index]) {
-                cart[index].quantity += change;
-                if (cart[index].quantity <= 0) {
-                    cart.splice(index, 1); // Remove item if quantity is 0
-                }
-                localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-                displayCart(); // Refresh cart display
-                updateCartCount(); // Update cart count in navbar
-            }
-        }
-    
-        // Function to remove an item from the cart completely
-        function removeItem(index) {
-            cart.splice(index, 1); // Remove item from cart
-            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-            displayCart(); // Refresh cart display
-            updateCartCount(); // Update cart count in navbar
-        }
-    
-        // Function to update the cart count in the navbar
-        function updateCartCount() {
-            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = cartCount;
-        }
-    
-        // Proceed to checkout (place order)
-        function proceedToCheckout() {
-            if (cart.length > 0) {
-                window.location.href = 'order.html'; // Redirect to the order details page
-            } else {
-                alert('Your cart is empty!');
-            }
-        }
-    
-        // Initialize cart display and cart count when the page loads
-        displayCart();
-        updateCartCount();
-</script>
+    <script type="module" src="../script/cart.js"></script>
 <script type="module">
 
 // Import Firebase Auth
@@ -119,7 +54,7 @@ onAuthStateChanged(auth, (user) => {
 });
 </script>
     
-<script src="../script/animation.js"></script>
+
 <br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 <footer>

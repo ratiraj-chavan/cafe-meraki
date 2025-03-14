@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         console.log("Reservation successful:", reservationData);
-        alert("✅ Reservation successfully made!");
         reservationForm.reset(); // Reset the form after submission
 
 
