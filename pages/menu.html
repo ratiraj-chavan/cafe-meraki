@@ -30,7 +30,6 @@
                 <img src="img/pizza.avif" alt="Pizza" class="menu-img">
                 <h3>Classic Pizza</h3>
                 <h4>Price: 100 rs</h4>
-                <input type="number" id="pizza-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('pizza', 'Classic Pizza', 100)">Add to Cart</button>
             </div>
 
@@ -38,22 +37,19 @@
                 <img src="img/burger.avif" alt="Burger" class="menu-img">
                 <h3>Burger Combo</h3>
                 <h4>Price: 210 rs</h4>
-                <input type="number" id="burger-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('burger', 'Burger Combo', 210)">Add to Cart</button>
             </div> 
             <div class="menu-item">
                 <img src="img/vegroll.jpeg" alt="Veg Roll" class="menu-img">
                 <h3>Paneer Veg Roll</h3>
                 <h4>Price: 100 rs</h4>
-                <input type="number" id="vegroll-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Paneer Veg Roll', 'Paneer Veg Roll', 100)">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
                 <img src="img/sandwich.jpg" alt="Sandwich" class="menu-img">
                 <h3>Boom Sandwich</h3>
-                <h4>Price: 120 rs</h4>
-                <input type="number" id="sandwich-quantity" value="1" min="1">
+                <h4>Price: 120 rs</h4>`
                 <button class="btn" onclick="addToCart('Boom Sandwich', 'Boom Sandwich',120)">Add to Cart</button>
             </div>
             
@@ -61,7 +57,6 @@
                 <img src="img/biryani.avif" alt="Biryani" class="menu-img">
                 <h3>Tandoori Biryani</h3>
                 <h4>Price: 120 rs</h4>
-                <input type="number" id="biryani-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Tandoori Biryani','Tandoori Biryani', 120)">Add to Cart</button>
             </div> 
             
@@ -69,7 +64,6 @@
                 <img src="img/bhattichicken.avif" alt="Bhatti Chicken" class="menu-img">
                 <h3>Bhatti Chicken</h3>
                 <h4>Price: 250 rs</h4>
-                <input type="number" id="bhattichicken-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Bhatti Chicken','Bhatti Chicken', 250)">Add to Cart</button>
             </div> 
             
@@ -77,7 +71,6 @@
                 <img src="img/momo.avif" alt="Momo" class="menu-img">
                 <h3>Steam Momos</h3>
                 <h4>Price: 60 rs</h4>
-                <input type="number" id="momo-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Steam Momos','Steam Momos', 60)">Add to Cart</button>
             </div> 
             
@@ -85,7 +78,8 @@
                 <img src="img/pasta.avif" alt="Pasta" class="menu-img">
                 <h3>Hola Pasta</h3>
                 <h4>Price: 150 rs</h4>
-                <input type="number" id="pasta-quantity" value="1" min="1">
+                
+                
                 <button class="btn" onclick="addToCart('Hola Pasta','Hola Pasta', 150)">Add to Cart</button>
             </div>
             
@@ -93,7 +87,6 @@
                 <img src="img/cheesecake.jpg" alt="Cheesecake" class="menu-img">
                 <h3>Cheese-Cake</h3>
                 <h4>Price: 180 rs</h4>
-                <input type="number" id="cake-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Cheese-Cake','Cheese-Cake', 180)">Add to Cart</button>
             </div>
             
@@ -101,7 +94,6 @@
                 <img src="img/icecream.avif" alt="Ice Cream" class="menu-img">
                 <h3>Ice-Cream</h3>
                 <h4>Price: 80 rs</h4>
-                <input type="number" id="icecream-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Ice-Cream','Ice-Cream', 80)">Add to Cart</button>
             </div>
             
@@ -109,7 +101,6 @@
                 <img src="img/coffe.avif" alt="Cold Coffee" class="menu-img">
                 <h3>Cold Coffee</h3>
                 <h4>Price: 70 rs</h4>
-                <input type="number" id="coffee-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Cold Coffee','Cold Coffee', 70)">Add to Cart</button>
             </div>
             
@@ -117,12 +108,11 @@
                 <img src="img/waffel.avif" alt="Waffle" class="menu-img">
                 <h3>Chocolate-Waffle</h3>
                 <h4>Price: 50 rs</h4>
-                <input type="number" id="waffel-quantity" value="1" min="1">
                 <button class="btn" onclick="addToCart('Chocolate-Waffle','Chocolate-Waffle', 50)">Add to Cart</button>
             </div>
 
         </div>
-    </section>
+    </section><br><br>
     <script> // Function to animate the item image flying to the cart
         function animateToCart(itemImage) {
             let cartIcon = document.querySelector("#cart-count");

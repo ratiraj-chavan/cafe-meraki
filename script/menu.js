@@ -59,11 +59,16 @@ const database = getDatabase(app);
 // ✅ Call the animateToCart function when the item image is clicked
 
 // ✅ Function to Add Items to Firebase Cart
-window.addToCart = function (itemId, itemName, itemPrice) {
+window.addToCart = function (itemId, itemName, itemPrice, imgElementId) {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const quantityInput = document.getElementById(`${itemId}-quantity`);
-            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1; // Fix: Read input value
+
+            if (quantity < 1) {
+                alert("Quantity must be at least 1!");
+                return;
+            }
 
             const cartRef = ref(database, `carts/${user.uid}/${itemId}`);
 
@@ -76,11 +81,18 @@ window.addToCart = function (itemId, itemName, itemPrice) {
                     // ✅ Add new item to cart
                     set(cartRef, { name: itemName, price: itemPrice, quantity: quantity });
                 }
+
                 updateCartCount(); // Refresh cart count
+
+                // ✅ Play the flying animation
+                const itemImage = document.getElementById(imgElementId);
+                if (itemImage) {
+                    animateToCart(itemImage);
+                }
             }).catch(error => console.error("❌ Error adding to cart:", error));
         } else {
             alert("❌ Please log in to add items to the cart.");
-            window.location.replace("../pages/login.html"); // Force redirect to login
+            window.location.replace("../pages/login.html");
         }
     });
 };

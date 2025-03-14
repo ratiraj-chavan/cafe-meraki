@@ -55,7 +55,7 @@ function displayCart(cartData) {
 
         cartContainer.innerHTML += `
             <div class="cart-item">
-                <p>${item.name} <br> ₹${item.price} x ${item.quantity}</p>
+                <p>${item.name} :- ₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity}</p>
                 <div class="cart-buttons">
                     <button onclick="updateItemQuantity('${itemId}', ${item.quantity - 1})">➖</button>
                     <button onclick="updateItemQuantity('${itemId}', ${item.quantity + 1})">➕</button>

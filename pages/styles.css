@@ -261,7 +261,7 @@ button:hover {
 
 /* Cart Section Styling */
 .cart {
-    max-width: 800px;
+    width: 600px;
     margin: 40px auto;
     padding: 20px;
     background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
