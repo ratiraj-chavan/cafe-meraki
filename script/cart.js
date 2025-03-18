@@ -90,22 +90,38 @@ window.updateItemQuantity = function (itemId, newQuantity) {
             loadCart();
         }
     });
+};// Proceed to checkout (place order)
+window.proceedToCheckout = function () {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const cartRef = ref(database, `carts/${user.uid}`);
+            get(cartRef).then((snapshot) => {
+                console.log("Cart Data Snapshot:", snapshot.val()); // Debugging
+
+                if (!snapshot.exists() || Object.keys(snapshot.val()).length === 0) {
+                    alert('❌ Your cart is empty! Please add items before proceeding to checkout.');
+                } else {
+                    console.log("✅ Proceeding to checkout...");
+                    window.location.href = '../pages/order.html'; // Redirect to order page
+                }
+            }).catch(error => {
+                console.error("❌ Error checking cart:", error);
+                alert("❌ Error fetching cart data. Please try again.");
+            });
+        } else {
+            alert("❌ Please log in to place an order.");
+            window.location.href = "../pages/login.html";
+        }
+    });
 };
-// Proceed to checkout (place order)
-function proceedToCheckout() {
-    if (cart.length > 0) {
-        window.location.href = '../pages/order.html'; // Redirect to the order details page
-    } else {
-        alert('Your cart is empty!');
-    }
-}
 // ✅ Function to Remove Item from Cart
 window.removeItem = function (itemId) {
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-            remove(ref(database, `carts/${user.uid}/${itemId}`));
-            loadCart();
-        }
+    if (user) {
+        remove(ref(database, `carts/${user.uid}/${itemId}`)).then(() => {
+            loadCart(); // Reload cart to update total price
+        });
+    }
     });
 };
 
