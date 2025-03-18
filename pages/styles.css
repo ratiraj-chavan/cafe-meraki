@@ -7,6 +7,7 @@ html, body {
     background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
 }
 
 /* Navbar Styling */
@@ -26,13 +27,29 @@ html, body {
     border: 1px solid rgba(5, 5, 5, 0.5);
     box-shadow: 0 6px 6px rgba(33, 33, 33, 0.5);
     z-index: 1000;
+    animation: fadeInDown 1s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
-
+.navbar:hover {
+    background: rgba(115, 112, 112, 0.3);
+    box-shadow: 0 8px 12px rgba(33, 33, 33, 0.3);
+}
 .navbar ul {
     list-style: none;
     display: flex;
     justify-content: center;
     gap: 4rem;
+}
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar a span {
+    display: inline-block;
+    width: 100px; /* Adjust as needed */
+    text-align: center;
 }
 
 .navbar a {
@@ -43,7 +60,12 @@ html, body {
     position: relative;
     padding: 5px 0;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease-in-out;
+}
+.navbar a:hover {
+    color: #ff6700;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 .navbar a::after {
@@ -99,15 +121,15 @@ html, body {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     position: relative;
     overflow: hidden;
 }
 
 /* Zoom and shadow effect on hover */
 .menu-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px) scale(1.04);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Image Styling with Hover Effect */
@@ -119,7 +141,8 @@ html, body {
 
 /* Slight zoom-in effect on image */
 .menu-item:hover img {
-    transform: scale(1.08);
+    animation: pulse 1s infinite;
+    transform: scale(1.03);
 }
 
 /* Title Styling */
@@ -131,8 +154,6 @@ html, body {
     transition: color 0.3s ease-in-out;
 }
 
-
-
 /* Glowing border effect */
 .menu-item::before {
     content: "";
@@ -143,7 +164,7 @@ html, body {
     height: 100%;
     border-radius: 15px;
     border: 2px solid transparent;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.1));
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -155,7 +176,7 @@ html, body {
 }
 /* Button Styling */
 .btn {
-    background: #ed9829;
+    background: #0e9ba8; /* Updated button color */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -167,14 +188,40 @@ html, body {
     margin-top: 10px;
     position: relative;
     z-index: 2; /* Ensures it's above everything */
+    overflow: hidden;
 }
-
+.btn::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.6s ease-out;
+}
+.btn:active::after {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+}
 .btn:hover {
-    background: #e98b11;
+    background: #0b7f87; /* Slightly darker shade of blue for hover effect */
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
 }
-
+.flying-item {
+    position: fixed;
+    z-index: 1000;
+    width: 60px !important;
+    height: auto !important;
+    opacity: 1;
+    pointer-events: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease-in-out;
+}
 /* Reservation Form Styling */
 .reservation form {
     max-width: 400px;
@@ -245,18 +292,18 @@ input, textarea {
 }
 
 button {
-    background: #ed9829;
+    background: #0e9ba8; /* Updated button color */
     color: white;
     border: none;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    background: #eb8f17;
+    background: #0b7f87; /* Updated hover color */
 }
 
 /* Cart Section Styling */
@@ -290,7 +337,7 @@ button:hover {
 }
 
 .cart-item button, #cart-total .btn {
-    background-color: #ed9829;
+    background-color: #0e9ba8; /* Updated button color */
     color: white;
     border: none;
     padding: 10px 19px;
@@ -299,7 +346,7 @@ button:hover {
 }
 
 .cart-item button:hover, #cart-total .btn:hover {
-    background-color: #f39821;
+    background-color: #0b7f87; /* Updated hover color */
 }
 
 /* Footer Styling */
@@ -320,7 +367,7 @@ footer p {
     font-size: 12px;
 }
 
-/* Animations */
+/* Existing Animations */
 @keyframes pop {
     0% { transform: scale(1); }
     50% { transform: scale(1.2); }
@@ -331,26 +378,30 @@ footer p {
     animation: pop 0.3s ease-in-out;
 }
 
-.flying-item {
-    position: absolute;
-    width: 80px;
-    height: auto;
-    transition: all 0.8s ease-in-out;
-    z-index: 1000;
-    pointer-events: none;
-    transform: scale(1);
-    opacity: 1;
-    border-radius: 15px;
-}
 /* Page transition effect */
 .page-transition {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+}
+.page-transition.loaded {
   opacity: 1;
-  transform: translateX(0);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transform: translateY(0);
 }
 
 /* Hide the page before switching */
 .page-transition.hide {
   opacity: 0;
   transform: translateX(-50px); /* Moves page to the left slightly */
+}
+
+/* Animation for smooth movement */
+@keyframes flyToCart {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(0.7) rotate(360deg) translateY(-30px); opacity: 0.9; }
+    100% { transform: scale(0.3) rotate(720deg) translateY(0); opacity: 0; }
+}
+
+.flying-item.animated {
+    animation: flyToCart 2s ease-in-out forwards;
 }

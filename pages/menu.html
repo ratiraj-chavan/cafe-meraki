@@ -10,14 +10,13 @@
     <script defer src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
 </head>
 <body>
-
     <header>
         <nav class="navbar">
-            <a href="../index.html">🏠</a>
-            <a href="menu.html">🗒️</a>
-            <a href="reservation.html">✅</a>
-            <a href="cart.html">🛒 [<span id="cart-count">0</span>]</a>
-            <a href="account.html">℀</a> 
+            <a href="../index.html"><span>🏠</span></a>
+            <a href="menu.html"><span>🗒️</span></a>
+            <a href="reservation.html"><span>✅</span></a>
+            <a href="cart.html"><span>🛒</span>[<span id="cart-count">0</span>]</a>
+            <a href="account.html"><span>℀</span></a> 
         </nav>
     </header>
     
@@ -27,88 +26,86 @@
         <h2>Our Menu</h2>
         <div class="menu-grid">
             <div class="menu-item">
-                <img src="img/pizza.avif" alt="Pizza" class="menu-img">
+                <img id="pizza-img" src="img/pizza.avif" alt="Pizza" class="menu-img">
                 <h3>Classic Pizza</h3>
                 <h4>Price: 100 rs</h4>
-                <button class="btn" onclick="addToCart('pizza', 'Classic Pizza', 100)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('pizza', 'Classic Pizza', 100, 'pizza-img')">Add to Cart</button>
             </div>
-
+            
             <div class="menu-item">
-                <img src="img/burger.avif" alt="Burger" class="menu-img">
+                <img id="burger-img" src="img/burger.avif" alt="Burger" class="menu-img">
                 <h3>Burger Combo</h3>
                 <h4>Price: 210 rs</h4>
-                <button class="btn" onclick="addToCart('burger', 'Burger Combo', 210)">Add to Cart</button>
-            </div> 
+                <button class="btn" onclick="addToCart('burger', 'Burger Combo', 210, 'burger-img')">Add to Cart</button>
+            </div>
             <div class="menu-item">
-                <img src="img/vegroll.jpeg" alt="Veg Roll" class="menu-img">
+                <img id="paneer-veg-roll-img" src="img/vegroll.jpeg" alt="Veg Roll" class="menu-img">
                 <h3>Paneer Veg Roll</h3>
                 <h4>Price: 100 rs</h4>
-                <button class="btn" onclick="addToCart('Paneer Veg Roll', 'Paneer Veg Roll', 100)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('paneer-veg-roll', 'Paneer Veg Roll', 100, 'paneer-veg-roll-img')">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
-                <img src="img/sandwich.jpg" alt="Sandwich" class="menu-img">
+                <img id="boom-sandwich-img" src="img/sandwich.jpg" alt="Sandwich" class="menu-img">
                 <h3>Boom Sandwich</h3>
-                <h4>Price: 120 rs</h4>`
-                <button class="btn" onclick="addToCart('Boom Sandwich', 'Boom Sandwich',120)">Add to Cart</button>
+                <h4>Price: 120 rs</h4>
+                <button class="btn" onclick="addToCart('boom-sandwich', 'Boom Sandwich', 120, 'boom-sandwich-img')">Add to Cart</button>
             </div>
             
             <div class="menu-item">
-                <img src="img/biryani.avif" alt="Biryani" class="menu-img">
+                <img id="tandoori-biryani-img" src="img/biryani.avif" alt="Biryani" class="menu-img">
                 <h3>Tandoori Biryani</h3>
                 <h4>Price: 120 rs</h4>
-                <button class="btn" onclick="addToCart('Tandoori Biryani','Tandoori Biryani', 120)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('tandoori-biryani', 'Tandoori Biryani', 120, 'tandoori-biryani-img')">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
-                <img src="img/bhattichicken.avif" alt="Bhatti Chicken" class="menu-img">
+                <img id="bhatti-chicken-img" src="img/bhattichicken.avif" alt="Bhatti Chicken" class="menu-img">
                 <h3>Bhatti Chicken</h3>
                 <h4>Price: 250 rs</h4>
-                <button class="btn" onclick="addToCart('Bhatti Chicken','Bhatti Chicken', 250)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('bhatti-chicken', 'Bhatti Chicken', 250, 'bhatti-chicken-img')">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
-                <img src="img/momo.avif" alt="Momo" class="menu-img">
+                <img id="steam-momos-img" src="img/momo.avif" alt="Momo" class="menu-img">
                 <h3>Steam Momos</h3>
                 <h4>Price: 60 rs</h4>
-                <button class="btn" onclick="addToCart('Steam Momos','Steam Momos', 60)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('steam-momos', 'Steam Momos', 60, 'steam-momos-img')">Add to Cart</button>
             </div> 
             
             <div class="menu-item">
-                <img src="img/pasta.avif" alt="Pasta" class="menu-img">
+                <img id="hola-pasta-img" src="img/pasta.avif" alt="Pasta" class="menu-img">
                 <h3>Hola Pasta</h3>
                 <h4>Price: 150 rs</h4>
-                
-                
-                <button class="btn" onclick="addToCart('Hola Pasta','Hola Pasta', 150)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('hola-pasta', 'Hola Pasta', 150, 'hola-pasta-img')">Add to Cart</button>
             </div>
             
             <div class="menu-item">
-                <img src="img/cheesecake.jpg" alt="Cheesecake" class="menu-img">
+                <img id="cheese-cake-img" src="img/cheesecake.jpg" alt="Cheesecake" class="menu-img">
                 <h3>Cheese-Cake</h3>
                 <h4>Price: 180 rs</h4>
-                <button class="btn" onclick="addToCart('Cheese-Cake','Cheese-Cake', 180)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('cheese-cake', 'Cheese-Cake', 180, 'cheese-cake-img')">Add to Cart</button>
             </div>
             
             <div class="menu-item">
-                <img src="img/icecream.avif" alt="Ice Cream" class="menu-img">
-                <h3>Ice-Cream</h3>
+                <img id="ice-cream-img" src="img/icecream.avif" alt="Ice Cream" class="menu-img">
+                <h3>IceCream</h3>
                 <h4>Price: 80 rs</h4>
-                <button class="btn" onclick="addToCart('Ice-Cream','Ice-Cream', 80)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('ice-cream', 'Ice-Cream', 80, 'ice-cream-img')">Add to Cart</button>
             </div>
             
             <div class="menu-item">
-                <img src="img/coffe.avif" alt="Cold Coffee" class="menu-img">
+                <img id="cold-coffee-img" src="img/coffe.avif" alt="Cold Coffee" class="menu-img">
                 <h3>Cold Coffee</h3>
                 <h4>Price: 70 rs</h4>
-                <button class="btn" onclick="addToCart('Cold Coffee','Cold Coffee', 70)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('cold-coffee', 'Cold Coffee', 70, 'cold-coffee-img')">Add to Cart</button>
             </div>
             
             <div class="menu-item">
-                <img src="img/waffel.avif" alt="Waffle" class="menu-img">
+                <img id="chocolate-waffle-img" src="img/waffel.avif" alt="Waffle" class="menu-img">
                 <h3>Chocolate-Waffle</h3>
                 <h4>Price: 50 rs</h4>
-                <button class="btn" onclick="addToCart('Chocolate-Waffle','Chocolate-Waffle', 50)">Add to Cart</button>
+                <button class="btn" onclick="addToCart('chocolate-waffle', 'Chocolate-Waffle', 50, 'chocolate-waffle-img')">Add to Cart</button>
             </div>
 
         </div>

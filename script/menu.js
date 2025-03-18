@@ -5,24 +5,23 @@ import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/fire
 
 // ✅ Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCH_ifqZOJG2nRF_CBi15QLL4qPnbHW4mk",
-  authDomain: "cafe-meraki.firebaseapp.com",
-  databaseURL: "https://cafe-meraki-default-rtdb.firebaseio.com",
-  projectId: "cafe-meraki",
-  storageBucket: "cafe-meraki.firebasestorage.app",
-  messagingSenderId: "283530227710",
-  appId: "1:283530227710:web:cc081b99c76797e6605aaf",
-  measurementId: "G-77EP68HM39"
+    apiKey: "AIzaSyCH_ifqZOJG2nRF_CBi15QLL4qPnbHW4mk",
+    authDomain: "cafe-meraki.firebaseapp.com",
+    databaseURL: "https://cafe-meraki-default-rtdb.firebaseio.com",
+    projectId: "cafe-meraki",
+    storageBucket: "cafe-meraki.firebasestorage.app",
+    messagingSenderId: "283530227710",
+    appId: "1:283530227710:web:cc081b99c76797e6605aaf",
+    measurementId: "G-77EP68HM39"
 };
 
-// ✅ Initialize Firebase (Fix for 'No Firebase App' Error)
+// ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-
- // Function to animate the item image flying to the cart
- function animateToCart(itemImage) {
+// ✅ Function to animate the item image flying to the cart
+function animateToCart(itemImage) {
     let cartIcon = document.querySelector("#cart-count");
     if (!cartIcon || !itemImage) return;
 
@@ -40,88 +39,94 @@ const database = getDatabase(app);
     flyingImg.style.width = "80px";
     flyingImg.style.height = "auto";
     flyingImg.style.opacity = "1";
-    flyingImg.style.transition = "all 0.8s ease-in-out";
+    flyingImg.style.transition = "transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease-in-out";
 
     document.body.appendChild(flyingImg);
 
-    // Move image toward cart
+    // Move image toward cart with rotation and scaling
     setTimeout(() => {
-        flyingImg.style.left = `${cartRect.left}px`;
-        flyingImg.style.top = `${cartRect.top}px`;
-        flyingImg.style.opacity = "0";
+        flyingImg.style.transform = `translate(${cartRect.left - imgRect.left}px, ${cartRect.top - imgRect.top}px) rotate(720deg) scale(0.3)`;
+        flyingImg.style.opacity = "0.8";
     }, 10);
+
+    // Slight bounce effect on reaching the cart
+    setTimeout(() => {
+        flyingImg.style.transform += " scale(0.5)";
+        flyingImg.style.opacity = "0";
+    }, 900);
 
     // Remove the animated image after animation
     setTimeout(() => {
         flyingImg.remove();
-    }, 1000);
+    }, 1100);
 }
-// ✅ Call the animateToCart function when the item image is clicked
 
 // ✅ Function to Add Items to Firebase Cart
 window.addToCart = function (itemId, itemName, itemPrice, imgElementId) {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const quantityInput = document.getElementById(`${itemId}-quantity`);
-            const quantity = quantityInput ? parseInt(quantityInput.value) : 1; // Fix: Read input value
+    const user = auth.currentUser; // Get the current logged-in user
+    if (!user) {
+        alert("❌ Please log in to add items to the cart.");
+        window.location.replace("../pages/login.html");
+        return;
+    }
 
-            if (quantity < 1) {
-                alert("Quantity must be at least 1!");
-                return;
-            }
+    const quantityInput = document.getElementById(`${itemId}-quantity`);
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
 
-            const cartRef = ref(database, `carts/${user.uid}/${itemId}`);
+    if (quantity < 1) {
+        alert("Quantity must be at least 1!");
+        return;
+    }
 
-            get(cartRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    // ✅ Update item quantity if it exists
-                    const existingData = snapshot.val();
-                    update(cartRef, { quantity: existingData.quantity + quantity });
-                } else {
-                    // ✅ Add new item to cart
-                    set(cartRef, { name: itemName, price: itemPrice, quantity: quantity });
-                }
+    const cartRef = ref(database, `carts/${user.uid}/${itemId}`);
 
-                updateCartCount(); // Refresh cart count
-
-                // ✅ Play the flying animation
-                const itemImage = document.getElementById(imgElementId);
-                if (itemImage) {
-                    animateToCart(itemImage);
-                }
-            }).catch(error => console.error("❌ Error adding to cart:", error));
+    get(cartRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            // ✅ Update item quantity if it exists
+            const existingData = snapshot.val();
+            update(cartRef, { quantity: existingData.quantity + quantity });
         } else {
-            alert("❌ Please log in to add items to the cart.");
-            window.location.replace("../pages/login.html");
+            // ✅ Add new item to cart
+            set(cartRef, { name: itemName, price: itemPrice, quantity: quantity });
         }
-    });
+
+        updateCartCount(); // Refresh cart count
+
+        // ✅ Play the flying animation
+        const itemImage = document.getElementById(imgElementId);
+        if (itemImage) {
+            animateToCart(itemImage);
+        }
+    }).catch(error => console.error("❌ Error adding to cart:", error));
 };
 
 // ✅ Function to Update Cart Count on Navbar
 function updateCartCount() {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const cartRef = ref(database, `carts/${user.uid}`);
-            get(cartRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    let totalItems = 0;
-                    Object.values(snapshot.val()).forEach(item => {
-                        totalItems += item.quantity;
-                    });
+    const user = auth.currentUser;
+    if (!user) {
+        document.getElementById("cart-count").textContent = 0;
+        return;
+    }
 
-                    // ✅ Update Cart Count on UI
-                    document.getElementById("cart-count").textContent = totalItems;
-                } else {
-                    document.getElementById("cart-count").textContent = 0;
-                }
-            }).catch(error => console.error("❌ Error fetching cart count:", error));
+    const cartRef = ref(database, `carts/${user.uid}`);
+    get(cartRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            let totalItems = 0;
+            Object.values(snapshot.val()).forEach(item => {
+                totalItems += item.quantity;
+            });
+
+            // ✅ Update Cart Count on UI
+            document.getElementById("cart-count").textContent = totalItems;
         } else {
             document.getElementById("cart-count").textContent = 0;
         }
-    });
+    }).catch(error => console.error("❌ Error fetching cart count:", error));
 }
 
 // ✅ Initialize Cart Count on Page Load
 document.addEventListener("DOMContentLoaded", () => {
-    updateCartCount();
+    onAuthStateChanged(auth, (user) => {
+        updateCartCount();
+    });
 });
