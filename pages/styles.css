@@ -27,7 +27,7 @@ html, body {
     border: 1px solid rgba(5, 5, 5, 0.5);
     box-shadow: 0 6px 6px rgba(33, 33, 33, 0.5);
     z-index: 1000;
-    animation: fadeInDown 1s ease-in-out;
+    animation: slideFadeIn 0.8s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
 .navbar:hover {
@@ -128,7 +128,7 @@ html, body {
 
 /* Zoom and shadow effect on hover */
 .menu-item:hover {
-    transform: translateY(-1px) scale(1.04);
+    transform: translateY(-1px) scale(1.02);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -142,7 +142,7 @@ html, body {
 /* Slight zoom-in effect on image */
 .menu-item:hover img {
     animation: pulse 1s infinite;
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 /* Title Styling */
@@ -365,43 +365,4 @@ footer {
 footer p {
     margin: 0;
     font-size: 12px;
-}
-
-/* Existing Animations */
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-.animated {
-    animation: pop 0.3s ease-in-out;
-}
-
-/* Page transition effect */
-.page-transition {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
-}
-.page-transition.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Hide the page before switching */
-.page-transition.hide {
-  opacity: 0;
-  transform: translateX(-50px); /* Moves page to the left slightly */
-}
-
-/* Animation for smooth movement */
-@keyframes flyToCart {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(0.7) rotate(360deg) translateY(-30px); opacity: 0.9; }
-    100% { transform: scale(0.3) rotate(720deg) translateY(0); opacity: 0; }
-}
-
-.flying-item.animated {
-    animation: flyToCart 2s ease-in-out forwards;
 }
